@@ -81,5 +81,41 @@ namespace WindowsRestapi
             restapiAdatok();
 
         }
+
+        private void listBox_Adatok_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox_Adatok.SelectedIndex<0)
+            {
+                return;
+            }
+            Dolgozo dolgozo = (Dolgozo)listBox_Adatok.SelectedItem;
+            textBox_fizetes.Text = dolgozo.Salary.ToString();
+            textBox_name.Text = dolgozo.Name;
+            textBox_id.Text = dolgozo.Id.ToString();
+        }
+
+        private void button_Delete_Click(object sender, EventArgs e)
+        {
+            if (listBox_Adatok.SelectedIndex<0)
+            {
+                MessageBox.Show("Nincs kiválasztott elem!");
+                return;
+            }
+            Dolgozo dolgozo = (Dolgozo)listBox_Adatok.SelectedItem;
+            string deleteUrl = $"{endPointUrl}/{dolgozo.Id}";
+            var response = client.DeleteAsync(deleteUrl);
+            //-- Visszajelzés a felhasználónak
+            if (response.IsCompleted)
+            {
+                MessageBox.Show("Sikeres törlés!");
+                textBox_fizetes.Text = "";
+                textBox_name.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Sikertelen törlés");
+            }
+            restapiAdatok();
+        }
     }
 }

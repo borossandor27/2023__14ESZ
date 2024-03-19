@@ -49,6 +49,7 @@ namespace WindowsRestapi
             this.listBox_Adatok.Name = "listBox_Adatok";
             this.listBox_Adatok.Size = new System.Drawing.Size(233, 450);
             this.listBox_Adatok.TabIndex = 0;
+            this.listBox_Adatok.SelectedIndexChanged += new System.EventHandler(this.listBox_Adatok_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -126,6 +127,7 @@ namespace WindowsRestapi
             this.button_Delete.TabIndex = 3;
             this.button_Delete.Text = "Törlés";
             this.button_Delete.UseVisualStyleBackColor = true;
+            this.button_Delete.Click += new System.EventHandler(this.button_Delete_Click);
             // 
             // Form1
             // 
