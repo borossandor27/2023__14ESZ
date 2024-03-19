@@ -17,6 +17,18 @@ namespace WindowsRestapi
 
     public partial class Dolgozo
     {
+        [JsonConstructor]
+        public Dolgozo(long id, string name, long salary)
+        {
+            Id = id;
+            Name = name;
+            Salary = salary;
+        }
+
+        public Dolgozo()
+        {
+        }
+
         [JsonProperty("id")]
         public long Id { get; set; }
 

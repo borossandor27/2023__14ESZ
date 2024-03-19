@@ -107,6 +107,7 @@ namespace WindowsRestapi
             this.button_Create.TabIndex = 3;
             this.button_Create.Text = "Beszúrás";
             this.button_Create.UseVisualStyleBackColor = true;
+            this.button_Create.Click += new System.EventHandler(this.button_Create_Click);
             // 
             // button_Update
             // 
