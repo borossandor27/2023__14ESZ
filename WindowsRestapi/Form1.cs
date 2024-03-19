@@ -15,28 +15,29 @@ namespace WindowsRestapi
     {
         string endPointUrl = "https://retoolapi.dev/KqpqJ9/data";
 
-        List<Adat> adatok = new List<Adat>();
+        List<Dolgozo> adatok = new List<Dolgozo>();
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
-            restapiAdatok().Wait();
+            restapiAdatok();
             listBox_Adatok.Items.AddRange(adatok.ToArray());
         }
-        async Task restapiAdatok()
+       private async void restapiAdatok()
         {
+            listBox_Adatok.Items.Clear();
             var client = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Get, endPointUrl);
             var response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
                 string jsonString = await response.Content.ReadAsStringAsync();
-                adatok = Adat.FromJson(jsonString).ToList();
-
+                adatok = Dolgozo.FromJson(jsonString);
+                listBox_Adatok.Items.AddRange(adatok.ToArray());
             }
         }
     }
